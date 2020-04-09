@@ -1,13 +1,26 @@
 package com.example.room;
 
+import android.app.Application;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
+
 import java.util.List;
 
-public class Dbviewmodel extends ViewModel {
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
+public class DbViewModel extends AndroidViewModel {
 
     private MainActivity_tableRepo repository;
     private LiveData<List<MainActivity_table>> all;
+
+    public DbViewModel(@NonNull Application application) {
+        super(application);
+        repository = new MainActivity_tableRepo(application);
+        all = repository.getAll();
+    }
 
     public void insert(MainActivity_table note) {
         repository.insert(note);
@@ -26,6 +39,7 @@ public class Dbviewmodel extends ViewModel {
     }
 
     public LiveData<List<MainActivity_table>> getAll() {
+        Log.i(TAG,"Inside getAll() of DBViewModel");
         return all;
     }
 

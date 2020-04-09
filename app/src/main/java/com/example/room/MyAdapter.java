@@ -1,4 +1,5 @@
 package com.example.room;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +9,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Myadapter extends RecyclerView.Adapter<Myadapter.NoteHolder>
+import static android.content.ContentValues.TAG;
+
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.NoteHolder>
 { private List<MainActivity_table> notes = new ArrayList<>();
+
+    class NoteHolder extends RecyclerView.ViewHolder{
+        private TextView sender;
+        private TextView last_sms;
+        private TextView timestamp;
+
+        public NoteHolder(@NonNull View itemView) {
+            super(itemView);
+            sender = itemView.findViewById(R.id.sender);
+            last_sms = itemView.findViewById(R.id.last_sms);
+            timestamp = itemView.findViewById(R.id.timestamp);
+
+        }
+    }
+
     @NonNull
     @Override
     public NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -31,22 +49,11 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.NoteHolder>
     public int getItemCount() {
         return notes.size();
     }
+
     public void set(List<MainActivity_table> notes) {
+        Log.i(TAG,"Inside set function of MyAdapter");
         this.notes = notes;
         notifyDataSetChanged();
     }
 
-    class NoteHolder extends RecyclerView.ViewHolder{
-        private TextView sender;
-        private TextView last_sms;
-        private TextView timestamp;
-
-        public NoteHolder(@NonNull View itemView) {
-            super(itemView);
-            sender = itemView.findViewById(R.id.sender);
-            last_sms = itemView.findViewById(R.id.last_sms);
-            timestamp = itemView.findViewById(R.id.timestamp);
-
-        }
     }
-}
