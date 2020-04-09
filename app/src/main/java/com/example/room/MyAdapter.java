@@ -31,7 +31,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.NoteHolder>
     @NonNull
     @Override
     public NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
+       View itemView = LayoutInflater.from(parent.getContext())
+               .inflate(R.layout.item, parent, false);
        return new NoteHolder(itemView);
     }
 
@@ -50,9 +51,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.NoteHolder>
         return notes.size();
     }
 
-    public void set(List<MainActivity_table> notes) {
+    public void set(List<MainActivity_table> m) {
         Log.i(TAG,"Inside set function of MyAdapter");
-        this.notes = notes;
+        this.notes = m;
         notifyDataSetChanged();
     }
 
