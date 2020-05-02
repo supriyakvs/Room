@@ -11,14 +11,17 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class DbViewModel extends AndroidViewModel {
 
     private MainActivity_tableRepo repository;
+
     private LiveData<List<MainActivity_table>> allMainMsg;
+    private LiveData<List<Msg>> allMsg;
 
     public DbViewModel(@NonNull Application application) {
         super(application);
         repository = new MainActivity_tableRepo(application);
         allMainMsg = repository.getAll();
+        //allMsg = repository.getAll_t2(String contactNumber);
     }
-
+    //main activity
     public void insert(MainActivity_table note) {
         repository.insert(note);
     }
@@ -38,6 +41,20 @@ public class DbViewModel extends AndroidViewModel {
     public LiveData<List<MainActivity_table>> getAll() {
         Log.i(TAG,"Inside getAll() of DBViewModel");
         return allMainMsg;
+    }
+
+    //individual chat
+    public void insert_t2(Msg m){
+        repository.insert_t2(m);
+    }
+    public void delete_t2(Msg m){
+        repository.delete_t2(m);
+    }
+    public void deleteAll_t2(){
+        repository.deleteAll_t2();
+    }
+    public LiveData<List<Msg>> getAll_t2(){
+        return allMsg;
     }
 
 }
