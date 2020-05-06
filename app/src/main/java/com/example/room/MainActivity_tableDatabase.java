@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-@Database(entities = {MainActivity_table.class, Msg.class}, version = 1)
+@Database(entities = {MainActivity_table.class, Msg.class}, version = 1, exportSchema = false)
 public abstract class MainActivity_tableDatabase extends RoomDatabase {
 
     public abstract MainActivity_tableDao mainActivity_tableDao();

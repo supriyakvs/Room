@@ -13,9 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MyAdapter.OnChatSummaryListener{
