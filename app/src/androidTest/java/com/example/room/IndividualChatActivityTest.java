@@ -22,7 +22,7 @@
 //    public final ActivityTestRule<IndividualChatActivity> main = new ActivityTestRule<>(IndividualChatActivity.class);
 //
 //    @Test
-//    {
+//    public void test_message5(){
 //        onView(withId(R.id.send)).inRoot(new ToastMatcher()).perform(click()).check(matches(withText("Message Sent")));
 //    }
 //
