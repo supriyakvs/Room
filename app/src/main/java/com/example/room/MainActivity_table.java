@@ -51,7 +51,8 @@ public class MainActivity_table {
     }
 
     public void setTs(Date ts) {
-        this.ts = ts;
+        //this.ts = ts;
+        this.ts = AppUtils.getCurrentDateTime();;
     }
 
 }
@@ -74,7 +75,9 @@ public class MainActivity_table {
         }
 
         public void setTs(Date ts) {
-            this.ts = ts;
+
+            //this.ts = ts;
+            this.ts = AppUtils.getCurrentDateTime();
         }
 
         public void setContactNumber(String contactNumber) {
