@@ -16,7 +16,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.swipeLeft;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -28,14 +32,22 @@ public class MainActivityTest {
     public final ActivityTestRule<MainActivity> main = new ActivityTestRule<>(MainActivity.class);
 
 
-    //test if on button click, new activity is launched or not
+    //method1 (test if on button click, new activity is launched or not)
     @Test
-    public void activityLaunch()
+    public void activityLaunch1(){
+        onView(withId(R.id.add)).perform(click());
+        intended(hasComponent(SendMsg.class.getName()));
+    }
+
+    //method2
+    @Test
+    public void activityLaunch2()
     {
         onView(withId(R.id.add)).perform(click());
         onView(withId(R.id.phone_num)).check(matches(isDisplayed()));
 
     }
+
 
     // Test if recycler view is visible
     @Test
@@ -68,6 +80,13 @@ public class MainActivityTest {
                 .inRoot(RootMatchers.withDecorView(
                         Matchers.is(main.getActivity().getWindow().getDecorView())))
                 .perform(RecyclerViewActions.scrollToPosition(itemCount - 1));
+    }
+
+    //test swipe to delete
+    @Test
+    public void swipeLeftToDelete(){
+        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItem(hasDescendant(withText("8527343337")),swipeLeft()));
+        onView(withText("Msg deleted")).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
     }
 
 }

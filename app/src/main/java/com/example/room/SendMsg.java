@@ -105,10 +105,14 @@ public class SendMsg extends AppCompatActivity {
                 Toast.makeText(this, "Please enter valid phone number",Toast.LENGTH_SHORT).show();
                 return;
             }
-            data.putExtra(EXTRA_PHONE, phone_num);
-            data.putExtra(EXTRA_MSG, sms_msg);
-            setResult(RESULT_OK, data);
-            finish();
+            else {
+                data.putExtra(EXTRA_PHONE, phone_num);
+                data.putExtra(EXTRA_MSG, sms_msg);
+                setResult(RESULT_OK, data);
+                Toast.makeText(this, "Message Sent",Toast.LENGTH_SHORT).show();
+
+            }
+        finish();
 
         }
 }
